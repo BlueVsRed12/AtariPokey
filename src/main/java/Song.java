@@ -27,4 +27,8 @@ public class Song {
     public String getAlbumName() {
         return album.getName();
     }
+
+    public File getFile() {
+        return file;
+    }
 }

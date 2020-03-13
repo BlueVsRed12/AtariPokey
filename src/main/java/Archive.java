@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,14 +9,14 @@ public class Archive {
         albums = new ArrayList<>();
     }
 
-    public void addSong(String name, String albumName) {
+    public void addSong(File path, String albumName, String name) {
         Album album = getAlbum(albumName);
         if (album == null) {
             album = new Album(albumName);
             albums.add(album);
         }
 
-        album.addSong(new Song(album, name));
+        album.addSong(new Song(path, album, name));
     }
 
     public Album getAlbum(String albumName) {
@@ -27,5 +28,13 @@ public class Archive {
 
     public List<Album> getAlbums() {
         return albums;
+    }
+
+    public int getSongCount() {
+        int count = 0;
+        for (Album album : albums) {
+            count += album.getSongs().size();
+        }
+        return count;
     }
 }
