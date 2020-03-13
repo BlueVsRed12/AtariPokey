@@ -9,14 +9,15 @@ public class Archive {
         albums = new ArrayList<>();
     }
 
-    public void addSong(File path, String albumName, String name) {
-        Album album = getAlbum(albumName);
+    public void addSong(Song song) {
+        Album album = getAlbum(song.getArtist());
         if (album == null) {
-            album = new Album(albumName);
+            album = new Album(song.getArtist());
             albums.add(album);
         }
 
-        album.addSong(new Song(path, album, name));
+        song.setAlbum(album);
+        album.addSong(song);
     }
 
     public Album getAlbum(String albumName) {
